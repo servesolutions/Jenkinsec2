@@ -1,4 +1,4 @@
-esource "aws_security_group" "aws_sg" {
+resource "aws_security_group" "aws_sg" {
   name = "security group from terraform"
 
   ingress {
@@ -29,12 +29,12 @@ esource "aws_security_group" "aws_sg" {
 
 resource "aws_instance" "aws_instance" {
 
-  ami                         = "ami-0aab712d6363da7f9"
+  ami                         = "ami-007ec828a062d87a5"
   instance_type               = "t2.micro"
   vpc_security_group_ids      = [aws_security_group.aws_sg.id]
   associate_public_ip_address = true
-  key_name                    = "myec2key" # your key here
-
+  key_name                    = "jenkinsec2" # your key here
+  user_data                   = file("userdata.tpl")
   tags = {
     Name = "my_instance"
   }
