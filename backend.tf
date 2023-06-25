@@ -4,7 +4,7 @@ terraform {
   backend "s3" {
     bucket         = "jenkinsec2"
     key            = "terraform.tfstate"
-    region         = "eu-west-2"
+    region         = var.region
     dynamodb_table = "jenkins"
   }
 }

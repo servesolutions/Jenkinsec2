@@ -29,11 +29,11 @@ resource "aws_security_group" "aws_sg" {
 
 resource "aws_instance" "aws_instance" {
 
-  ami                         = "ami-007ec828a062d87a5"
-  instance_type               = "t2.micro"
+  ami                         = var.ami
+  instance_type               = var.instance_type
   vpc_security_group_ids      = [aws_security_group.aws_sg.id]
   associate_public_ip_address = true
-  key_name                    = "jenkinsec2" # your key here
+  key_name                    = var.key_name
   user_data                   = file("userdata.tpl")
   tags = {
     Name = "my_instance"
